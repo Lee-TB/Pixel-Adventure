@@ -8,6 +8,7 @@ public class PlayerVisual : MonoBehaviour
     private const string IS_RUN = "IsRun";
     private const string IS_JUMP = "IsJump";
     private const string IS_FALL = "IsFall";
+    private const string IS_DOUBLE_JUMP = "IsDoubleJump";
 
     [SerializeField] private Player player;
 
@@ -32,6 +33,7 @@ public class PlayerVisual : MonoBehaviour
                 animator.SetTrigger(IS_JUMP);
                 break;
             case Player.State.DoubleJump:
+                animator.SetTrigger(IS_DOUBLE_JUMP);
                 break;
             case Player.State.WallJump:
                 break;
