@@ -1,5 +1,3 @@
-using System;
-using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -8,6 +6,7 @@ public class Player : MonoBehaviour
     private BoxCollider2D boxCollider2D;
 
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float jumpPower = 10f;
     [SerializeField] private float wallSlidingSpeed = 2f;
@@ -189,7 +188,7 @@ public class Player : MonoBehaviour
 
         if (state == State.WallSlide && coyoteTimer > 0f && jumpBufferTimer > 0f && jumpNumber > 0)
         {
-            rb.velocity = new Vector2(jumpPower * wallJumpDirection.x, jumpPower);
+            rb.velocity = new Vector2(jumpPower * 0.5f * wallJumpDirection.x, jumpPower);
             Flip();
             state = State.WallJump;
         }
@@ -202,8 +201,8 @@ public class Player : MonoBehaviour
 
     public bool IsGrounded()
     {
-        float distance = 0.2f;
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, Vector2.down, distance, groundLayer);
+        float distance = 0f;
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(new Vector2(boxCollider2D.bounds.center.x, boxCollider2D.bounds.min.y), boxCollider2D.bounds.extents, 0f, Vector2.down, distance, groundLayer);
 
         Color color;
         if (raycastHit2D.collider != null)
@@ -214,7 +213,7 @@ public class Player : MonoBehaviour
         {
             color = Color.red;
         }
-        Debug.DrawRay(boxCollider2D.bounds.max, Vector3.down * (boxCollider2D.bounds.size.y + distance), color);
+        Debug.DrawRay(new Vector2(boxCollider2D.bounds.center.x, boxCollider2D.bounds.min.y), Vector3.down * (boxCollider2D.bounds.extents.y + distance), color);
 
         return raycastHit2D.collider != null;
     }
@@ -233,7 +232,7 @@ public class Player : MonoBehaviour
             direction = Vector2.left;
         }
 
-        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, direction, distance, groundLayer);
+        RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, direction, distance, wallLayer);
 
         Color color;
         if (raycastHit2D.collider != null)
