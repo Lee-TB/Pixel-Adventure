@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cent-16x16_0
+      name: coin-16x16_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d1739d3b25acf34fa69561da6fa5c7f
-      internalID: 136877228
+      spriteID: aa41a789b02340f48963058f20c32e43
+      internalID: 489566123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_1
+      name: coin-16x16_1
       rect:
         serializedVersion: 2
         x: 16
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 94c875becbf7852468a53d76aaab78dc
-      internalID: 28464765
+      spriteID: b900ff30cd807284584f20111a826a04
+      internalID: -920645989
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_2
+      name: coin-16x16_2
       rect:
         serializedVersion: 2
         x: 32
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 081171871cc01ff409ee84994b86cda2
-      internalID: 1559154061
+      spriteID: b01980b094a9e744497f7b5f7bff0895
+      internalID: -838542107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_3
+      name: coin-16x16_3
       rect:
         serializedVersion: 2
         x: 48
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf201fa1caca071419b326c6a1b401ba
-      internalID: 944502055
+      spriteID: d470853a5d1698342af4aeab60bc588b
+      internalID: 201880400
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_4
+      name: coin-16x16_4
       rect:
         serializedVersion: 2
         x: 64
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 060f8c02035f58047832140b4e1c5104
-      internalID: -1158197681
+      spriteID: 001091880d811114d8803c2743e7efb4
+      internalID: -316459571
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_5
+      name: coin-16x16_5
       rect:
         serializedVersion: 2
         x: 80
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc584fe0719ae2047bf1254339b10cbf
-      internalID: -1847973628
+      spriteID: 7ba5203f7b61c7f4abea7a436adb057b
+      internalID: 1128425432
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_6
+      name: coin-16x16_6
       rect:
         serializedVersion: 2
         x: 96
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 821f085b529e2b54cb76b8f35df01b9b
-      internalID: 1112363684
+      spriteID: 8f06deb917edb654193d8c7a3b462dac
+      internalID: -879214777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_7
+      name: coin-16x16_7
       rect:
         serializedVersion: 2
         x: 112
@@ -271,14 +271,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 10b182de5f650b647a8e6ce4e6e7c18c
-      internalID: -585464227
+      spriteID: c8571364a9be8df4ab785362f2e457b0
+      internalID: 952417483
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_8
+      name: coin-16x16_8
       rect:
         serializedVersion: 2
         x: 128
@@ -292,14 +292,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 61cf2a95d24d99a4bb4b5ff78265cd70
-      internalID: 1891806612
+      spriteID: 0ba680edf3ef1c44a9bc5d94e94ea5ff
+      internalID: -223711269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_9
+      name: coin-16x16_9
       rect:
         serializedVersion: 2
         x: 144
@@ -313,14 +313,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed0876878dd4b8b43ab5c7b70994805b
-      internalID: -1254723215
+      spriteID: af871faca6b18b4459023c3ccabb9497
+      internalID: -492043099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_10
+      name: coin-16x16_10
       rect:
         serializedVersion: 2
         x: 160
@@ -334,14 +334,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f8b178fe36d316342aae63aaf6f548d0
-      internalID: -1880738827
+      spriteID: 5ccd8514bd5b6284c93f2dfba1ba3518
+      internalID: -299786580
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_11
+      name: coin-16x16_11
       rect:
         serializedVersion: 2
         x: 176
@@ -355,14 +355,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 19a9b07767024ac41ac38f6f407715f6
-      internalID: -764073934
+      spriteID: 23a9ad725639be642b10291cf9acb7e2
+      internalID: -1672996926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cent-16x16_12
+      name: coin-16x16_12
       rect:
         serializedVersion: 2
         x: 192
@@ -376,8 +376,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bc2d9b8586f1974c9a58d4b34358ca7
-      internalID: -1135296067
+      spriteID: d48d13fccadee0448a78db403592cebf
+      internalID: -346606906
       vertices: []
       indices: 
       edges: []
@@ -393,19 +393,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cent-16x16_0: 136877228
-      Cent-16x16_1: 28464765
-      Cent-16x16_10: -1880738827
-      Cent-16x16_11: -764073934
-      Cent-16x16_12: -1135296067
-      Cent-16x16_2: 1559154061
-      Cent-16x16_3: 944502055
-      Cent-16x16_4: -1158197681
-      Cent-16x16_5: -1847973628
-      Cent-16x16_6: 1112363684
-      Cent-16x16_7: -585464227
-      Cent-16x16_8: 1891806612
-      Cent-16x16_9: -1254723215
+      coin-16x16_0: 489566123
+      coin-16x16_1: -920645989
+      coin-16x16_10: -299786580
+      coin-16x16_11: -1672996926
+      coin-16x16_12: -346606906
+      coin-16x16_2: -838542107
+      coin-16x16_3: 201880400
+      coin-16x16_4: -316459571
+      coin-16x16_5: 1128425432
+      coin-16x16_6: -879214777
+      coin-16x16_7: 952417483
+      coin-16x16_8: -223711269
+      coin-16x16_9: -492043099
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
