@@ -1,15 +1,25 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Box : MonoBehaviour
 {
     public event EventHandler OnBoxBreaked;
-
+    public event EventHandler OnBoxBouncing;
+    public enum BoxType
+    {
+        Basic,
+        Bouncing,
+        Solid,
+    }
+    [SerializeField] private BoxType boxType;
     [SerializeField] private Transform boxVisualTransform;
     [SerializeField] private int maxHP = 3;
 
     private Animator boxVisualAnimator;
     private int hp;
+    private bool isBreaked = false;
+
     private void Awake()
     {
         hp = maxHP;
@@ -20,24 +30,38 @@ public class Box : MonoBehaviour
     {
         if (collider2D.gameObject.TryGetComponent(out Player player))
         {
-            player.Jump();
-            boxVisualAnimator.SetTrigger("IsHit");
             hp -= 1;
+            boxVisualAnimator.SetTrigger("IsHit");
+
+            switch (boxType)
+            {
+                case BoxType.Basic:
+                    player.Jump();
+                    break;
+                case BoxType.Bouncing:
+                    player.Jump();
+                    OnBoxBouncing?.Invoke(this, EventArgs.Empty);
+                    break;
+                case BoxType.Solid:
+                    break;
+            }
+
+            if (hp == 0 && !isBreaked)
+            {
+                boxVisualTransform.gameObject.SetActive(false);
+                BoxCollider2D[] boxCollider2DArray = GetComponents<BoxCollider2D>();
+                foreach (var boxCollider2D in boxCollider2DArray)
+                {
+                    Destroy(boxCollider2D);
+                }
+
+                OnBoxBreaked?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collider2D)
+    public BoxType GetBoxType()
     {
-        if (hp == 0)
-        {   // when Box is breaked
-            boxVisualTransform.gameObject.SetActive(false);
-            BoxCollider2D[] boxCollider2DArray = GetComponents<BoxCollider2D>();
-            foreach (var boxCollider2D in boxCollider2DArray)
-            {
-                Destroy(boxCollider2D);
-            }
-
-            OnBoxBreaked?.Invoke(this, EventArgs.Empty);
-        }
+        return boxType;
     }
 }
