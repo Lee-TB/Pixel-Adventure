@@ -48,10 +48,10 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        Movement();
-        Jumping();
-        WallSliding();
-        WallJumping();
+        HandleMovement();
+        HandleJumping();
+        HandleWallSliding();
+        HandleWallJumping();
         if (Input.GetButtonUp("Jump"))
         {
             jumpNumber -= 1;
@@ -64,7 +64,7 @@ public class Player : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
     }
 
-    private void Movement()
+    private void HandleMovement()
     {
         if (state != State.WallJump && state != State.WallSlide)
             rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         transform.localScale = localScale;
     }
 
-    private void Jumping()
+    private void HandleJumping()
     {
         if (IsGrounded())
         {
@@ -150,7 +150,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void WallSliding()
+    private void HandleWallSliding()
     {
         if (IsFacingWall() && horizontal != 0f && !IsGrounded())
         {
@@ -159,7 +159,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void WallJumping()
+    private void HandleWallJumping()
     {
         if (state == State.WallSlide)
         {
@@ -246,5 +246,10 @@ public class Player : MonoBehaviour
 
         Debug.DrawRay(new Vector2(boxCollider2D.bounds.center.x, boxCollider2D.bounds.center.y), direction * (boxCollider2D.bounds.extents.x + distance), color);
         return raycastHit2D.collider != null;
+    }
+
+    public void Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpPower);
     }
 }
