@@ -13,7 +13,7 @@ public class Box : MonoBehaviour
     }
     [SerializeField] private BoxType boxType;
     [SerializeField] private Transform boxVisualTransform;
-    [SerializeField] private int maxHP = 3;
+    [SerializeField] private int maxHP = 1;
 
     private Animator boxVisualAnimator;
     private int hp;

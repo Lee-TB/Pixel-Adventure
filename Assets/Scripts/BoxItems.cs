@@ -10,6 +10,7 @@ public class BoxItems : MonoBehaviour
     [SerializeField] List<Transform> itemList;
     [SerializeField] float explosionRadius = 8f;
     [SerializeField] float explosionHeight = 10f;
+    [SerializeField] float spawnDelayTime = 0.04f;
 
     private Box box;
 
@@ -33,11 +34,10 @@ public class BoxItems : MonoBehaviour
     {
         boxBreakList.ForEach(boxBreak => SpawnBoxBreak(boxBreak));
 
-        // Spawn an Item every waitTime seconds.
-        float waitTime = 0.04f;
+        // Spawn an Item every delay seconds.        
         if (box.GetBoxType() != Box.BoxType.Bouncing)
         {
-            StartCoroutine(SpawnItemRoutine(itemList, waitTime));
+            StartCoroutine(SpawnItemRoutine(itemList, spawnDelayTime));
         }
     }
 
@@ -62,13 +62,13 @@ public class BoxItems : MonoBehaviour
         CircleCollider2D[] circleCollider2DArray = itemTransform.GetComponents<CircleCollider2D>();
         LayerMask playerMask = LayerMask.GetMask("Player");
         LayerMask nothingMask = LayerMask.GetMask("Nothing");
-        float waitTime = 0.2f;
+        float waitToCanPickupTime = 0.2f;
         foreach (var collider2D in circleCollider2DArray)
         {
             if (collider2D.isTrigger == true)
             {
                 collider2D.excludeLayers = playerMask;
-                StartCoroutine(WaitRoutine(() => collider2D.excludeLayers = nothingMask, waitTime));
+                StartCoroutine(WaitRoutine(() => collider2D.excludeLayers = nothingMask, waitToCanPickupTime));
             }
         }
 
