@@ -2,21 +2,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private BoxCollider2D boxCollider2D;
-
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float jumpPower = 10f;
     [SerializeField] private float wallSlidingSpeed = 2f;
-
-    private float jumpBufferTimer;
-    private float jumpBufferTimerMax = 0.2f;
-    private float coyoteTimer;
-    private float coyoteTimerMax = 0.2f;
-    private int jumpNumberMax = 2;
-    private int jumpNumber;
 
     public enum State
     {
@@ -31,9 +21,13 @@ public class Player : MonoBehaviour
     }
     private State state;
 
+    private Rigidbody2D rb;
+    private BoxCollider2D boxCollider2D;
+    private float jumpBufferTimer, jumpBufferTimerMax = 0.2f;
+    private float coyoteTimer, coyoteTimerMax = 0.2f;
+    private int jumpNumber, jumpNumberMax = 2;
     private bool isFacingRight = true;
     private float horizontal;
-
 
     private void Awake()
     {
@@ -179,11 +173,7 @@ public class Player : MonoBehaviour
             jumpBufferTimer = 0f;
         }
 
-        Vector2 wallJumpDirection;
-        if (isFacingRight)
-            wallJumpDirection = Vector2.left;
-        else
-            wallJumpDirection = Vector2.right;
+        Vector2 wallJumpDirection = isFacingRight ? Vector2.left : Vector2.right;
 
         if (state == State.WallSlide && coyoteTimer > 0f && jumpBufferTimer > 0f && jumpNumber > 0)
         {
@@ -203,15 +193,7 @@ public class Player : MonoBehaviour
         float distance = 0f;
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(new Vector2(boxCollider2D.bounds.center.x, boxCollider2D.bounds.min.y), boxCollider2D.bounds.extents, 0f, Vector2.down, distance, groundLayer);
 
-        Color color;
-        if (raycastHit2D.collider != null)
-        {
-            color = Color.green;
-        }
-        else
-        {
-            color = Color.red;
-        }
+        Color color = raycastHit2D.collider != null ? Color.green : Color.red;
         Debug.DrawRay(new Vector2(boxCollider2D.bounds.center.x, boxCollider2D.bounds.min.y), Vector3.down * (boxCollider2D.bounds.extents.y + distance), color);
 
         return raycastHit2D.collider != null;
@@ -220,30 +202,12 @@ public class Player : MonoBehaviour
     public bool IsFacingWall()
     {
         float distance = 0.1f;
-        Vector2 direction;
-
-        if (isFacingRight)
-        {
-            direction = Vector2.right;
-        }
-        else
-        {
-            direction = Vector2.left;
-        }
-
+        Vector2 direction = isFacingRight ? Vector2.right : Vector2.left;
         RaycastHit2D raycastHit2D = Physics2D.BoxCast(boxCollider2D.bounds.center, boxCollider2D.bounds.size, 0f, direction, distance, wallLayer);
 
-        Color color;
-        if (raycastHit2D.collider != null)
-        {
-            color = Color.green;
-        }
-        else
-        {
-            color = Color.red;
-        }
-
+        Color color = raycastHit2D.collider != null ? Color.green : Color.red;
         Debug.DrawRay(new Vector2(boxCollider2D.bounds.center.x, boxCollider2D.bounds.center.y), direction * (boxCollider2D.bounds.extents.x + distance), color);
+
         return raycastHit2D.collider != null;
     }
 
