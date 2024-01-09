@@ -5,9 +5,18 @@ using UnityEngine;
 
 public class BoxItems : MonoBehaviour
 {
-    [SerializeField] Box box;
+    [SerializeField] Transform boxItemsTransform;
     [SerializeField] List<Transform> boxBreakList;
     [SerializeField] List<Transform> itemList;
+    [SerializeField] float explosionRadius = 8f;
+    [SerializeField] float explosionHeight = 10f;
+
+    private Box box;
+
+    private void Awake()
+    {
+        box = GetComponent<Box>();
+    }
 
     private void Start()
     {
@@ -43,7 +52,7 @@ public class BoxItems : MonoBehaviour
 
     private void SpawnItem(Transform item)
     {
-        Transform itemTransform = Instantiate(item, transform);
+        Transform itemTransform = Instantiate(item, boxItemsTransform);
 
         Rigidbody2D rb = itemTransform.GetComponent<Rigidbody2D>();
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -63,8 +72,8 @@ public class BoxItems : MonoBehaviour
             }
         }
 
-        float randomPower = UnityEngine.Random.Range(-12f, 12f);
-        rb.velocity = new Vector2(randomPower, 10f);
+        float randPower = UnityEngine.Random.Range(-explosionRadius, explosionRadius);
+        rb.velocity = new Vector2(randPower, explosionHeight);
     }
 
     private IEnumerator WaitRoutine(Action action, float waitTime)
@@ -75,9 +84,12 @@ public class BoxItems : MonoBehaviour
 
     private void SpawnBoxBreak(Transform boxBreak)
     {
-        Transform boxBreakTransform = Instantiate(boxBreak, transform);
+        Transform boxBreakTransform = Instantiate(boxBreak, boxItemsTransform);
         Rigidbody2D rb = boxBreakTransform.GetComponent<Rigidbody2D>();
-        float randomPower = UnityEngine.Random.Range(-16f, 16f);
-        rb.velocity = new Vector2(randomPower, 10f);
+
+        float randPower = UnityEngine.Random.Range(-explosionRadius, explosionRadius);
+        rb.velocity = new Vector2(randPower, explosionHeight);
     }
+
+
 }

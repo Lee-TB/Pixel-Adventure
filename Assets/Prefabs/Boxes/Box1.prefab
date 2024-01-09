@@ -8,6 +8,42 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: boxItemsTransform
+      value: 
+      objectReference: {fileID: 7811312036441587700}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: itemList.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: itemList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8168285340290394518, guid: f03e79418c3db2b4f96c3f98c66407b3, type: 3}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: itemList.Array.data[1]
+      value: 
+      objectReference: {fileID: 5819304830718957627, guid: 3b7d2cca336ae1a4f87b9a3aa591a68d, type: 3}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: boxBreakList.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: boxBreakList.Array.data[0]
+      value: 
+      objectReference: {fileID: 4367835052069090397, guid: 3634de41194bbfb4391966d7f8c71fb0, type: 3}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: boxBreakList.Array.data[1]
+      value: 
+      objectReference: {fileID: 5774093279805802231, guid: 0e1035b8f4b518346ba68ba5be01c40c, type: 3}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: boxBreakList.Array.data[2]
+      value: 
+      objectReference: {fileID: 8683223693519435590, guid: 01412e7b2f1e8994eab741ba541a4f19, type: 3}
+    - target: {fileID: 1718003338355660473, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+      propertyPath: boxBreakList.Array.data[3]
+      value: 
+      objectReference: {fileID: 4185280528372876897, guid: a4ccb82af6e794d4da0c04c8b21421b8, type: 3}
     - target: {fileID: 2245164114649658912, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -99,6 +135,11 @@ PrefabInstance:
 --- !u!4 &2137129417157209920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2245164114649658912, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
+  m_PrefabInstance: {fileID: 180415822845761888}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7811312036441587700 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7991547194421388948, guid: 1e7b3251a0672f5418d35377fb2f4e5f, type: 3}
   m_PrefabInstance: {fileID: 180415822845761888}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &8527022127467109221 stripped

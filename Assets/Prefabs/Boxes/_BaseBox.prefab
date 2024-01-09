@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7991547194421388948}
-  - component: {fileID: 7943006070946874296}
   m_Layer: 6
   m_Name: Box_Items
   m_TagString: Untagged
@@ -32,21 +31,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2245164114649658912}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7943006070946874296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7404824697166163497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af155fe86bb24d4438b9cf78e4aa905e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  box: {fileID: 0}
-  boxBreakList: []
-  itemList: []
 --- !u!1 &8240820735694857620
 GameObject:
   m_ObjectHideFlags: 0
@@ -56,10 +40,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2245164114649658912}
-  - component: {fileID: 8419169777356259845}
   - component: {fileID: 1699125055579074904}
   - component: {fileID: 1578170103202686859}
   - component: {fileID: 8981451907019448609}
+  - component: {fileID: 8419169777356259845}
+  - component: {fileID: 1718003338355660473}
   m_Layer: 6
   m_Name: _BaseBox
   m_TagString: Untagged
@@ -83,21 +68,6 @@ Transform:
   - {fileID: 7991547194421388948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8419169777356259845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8240820735694857620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82a1dffbeb8e52347b88d87d2a61fe0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boxType: 0
-  boxVisualTransform: {fileID: 0}
-  maxHP: 1
 --- !u!61 &1699125055579074904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -215,3 +185,35 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8419169777356259845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240820735694857620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82a1dffbeb8e52347b88d87d2a61fe0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxType: 0
+  boxVisualTransform: {fileID: 0}
+  maxHP: 1
+--- !u!114 &1718003338355660473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8240820735694857620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af155fe86bb24d4438b9cf78e4aa905e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  box: {fileID: 0}
+  boxBreakList: []
+  itemList: []
+  explosionRadius: 8
+  explosionHeight: 10
