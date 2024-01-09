@@ -1,6 +1,6 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoxItems : MonoBehaviour
@@ -24,10 +24,21 @@ public class BoxItems : MonoBehaviour
     {
         boxBreakList.ForEach(boxBreak => SpawnBoxBreak(boxBreak));
 
+        // Spawn an Item every waitTime seconds.
+        float waitTime = 0.04f;
         if (box.GetBoxType() != Box.BoxType.Bouncing)
         {
-            itemList.ForEach(item => SpawnItem(item));
+            StartCoroutine(SpawnItemRoutine(itemList, waitTime));
         }
+    }
+
+    private IEnumerator SpawnItemRoutine(List<Transform> item, float waitTime)
+    {
+        for (int i = 0; i < item.Count; i++)
+        {
+            yield return new WaitForSeconds(waitTime);
+            SpawnItem(item[i]);
+        };
     }
 
     private void SpawnItem(Transform item)
@@ -39,8 +50,27 @@ public class BoxItems : MonoBehaviour
         rb.gravityScale = 5f;
         rb.freezeRotation = true;
 
+        CircleCollider2D[] circleCollider2DArray = itemTransform.GetComponents<CircleCollider2D>();
+        LayerMask playerMask = LayerMask.GetMask("Player");
+        LayerMask nothingMask = LayerMask.GetMask("Nothing");
+        float waitTime = 0.2f;
+        foreach (var collider2D in circleCollider2DArray)
+        {
+            if (collider2D.isTrigger == true)
+            {
+                collider2D.excludeLayers = playerMask;
+                StartCoroutine(WaitRoutine(() => collider2D.excludeLayers = nothingMask, waitTime));
+            }
+        }
+
         float randomPower = UnityEngine.Random.Range(-12f, 12f);
         rb.velocity = new Vector2(randomPower, 10f);
+    }
+
+    private IEnumerator WaitRoutine(Action action, float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        action();
     }
 
     private void SpawnBoxBreak(Transform boxBreak)
