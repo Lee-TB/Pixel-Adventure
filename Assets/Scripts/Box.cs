@@ -1,5 +1,4 @@
 using System;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Box : MonoBehaviour
@@ -33,15 +32,23 @@ public class Box : MonoBehaviour
             hp -= 1;
             boxVisualAnimator.SetTrigger("IsHit");
 
+            float jumpPower = 10f;
+            float divePower = 5f;
+
             switch (boxType)
             {
                 case BoxType.Basic:
-                    player.Jump();
+                    if (player.GetVelocity().y < 0f) player.Jump(jumpPower);
+                    else if (player.GetVelocity().y > 0f) player.Dive(divePower);
                     break;
+
                 case BoxType.Bouncing:
-                    player.Jump();
+                    if (player.GetVelocity().y < 0f) player.Jump(jumpPower);
+                    else if (player.GetVelocity().y > 0f) player.Dive(divePower);
+
                     OnBoxBouncing?.Invoke(this, EventArgs.Empty);
                     break;
+
                 case BoxType.Solid:
                     break;
             }

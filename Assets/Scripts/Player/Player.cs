@@ -55,7 +55,6 @@ public class Player : MonoBehaviour
         if (Input.GetButtonUp("Jump"))
         {
             jumpNumber -= 1;
-
         }
     }
 
@@ -248,8 +247,18 @@ public class Player : MonoBehaviour
         return raycastHit2D.collider != null;
     }
 
-    public void Jump()
+    public void Jump(float power)
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        rb.velocity = new Vector2(rb.velocity.x, power);
+    }
+
+    public void Dive(float power)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, -power);
+    }
+
+    public Vector2 GetVelocity()
+    {
+        return rb.velocity;
     }
 }
