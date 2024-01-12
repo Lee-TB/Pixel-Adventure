@@ -216,6 +216,11 @@ public class Player : MonoBehaviour
         rb.velocity = new Vector2(rb.velocity.x, power);
     }
 
+    public void JumpByJumpBufferTimer()
+    {
+        jumpBufferTimer = jumpBufferTimerMax;
+    }
+
     public void Dive(float power)
     {
         rb.velocity = new Vector2(rb.velocity.x, -power);
@@ -224,5 +229,10 @@ public class Player : MonoBehaviour
     public Vector2 GetVelocity()
     {
         return rb.velocity;
+    }
+
+    public bool IsJumpOn()
+    {
+        return Mathf.Abs(rb.velocity.y) > wallSlidingSpeed + 1f;
     }
 }
