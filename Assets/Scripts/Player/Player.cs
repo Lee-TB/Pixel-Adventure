@@ -60,7 +60,9 @@ public class Player : MonoBehaviour
     private void HandleMovement()
     {
         if (state != State.WallJump && state != State.WallSlide)
+        {
             rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        }
 
         // Flip
         if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
