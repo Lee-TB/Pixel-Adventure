@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerVisual : MonoBehaviour
@@ -10,9 +8,10 @@ public class PlayerVisual : MonoBehaviour
     private const string IS_FALL = "IsFall";
     private const string IS_DOUBLE_JUMP = "IsDoubleJump";
     private const string IS_WALL_SLIDE = "IsWallSlide";
+    private const string IS_HIT = "IsHit";
 
 
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerController playerController;
 
     private Animator animator;
 
@@ -23,31 +22,30 @@ public class PlayerVisual : MonoBehaviour
 
     private void Update()
     {
-        switch (player.GetState())
+        switch (playerController.TriggerType)
         {
-            case Player.State.Idle:
+            case PlayerController.AnimationTriggerType.Idle:
                 animator.SetTrigger(IS_IDLE);
                 break;
-            case Player.State.Run:
+            case PlayerController.AnimationTriggerType.Run:
                 animator.SetTrigger(IS_RUN);
                 break;
-            case Player.State.Jump:
+            case PlayerController.AnimationTriggerType.Jump:
                 animator.SetTrigger(IS_JUMP);
                 break;
-            case Player.State.DoubleJump:
-                animator.SetTrigger(IS_DOUBLE_JUMP);
-                break;
-            case Player.State.WallSlide:
-                animator.SetTrigger(IS_WALL_SLIDE);
-                break;
-            case Player.State.WallJump:
-                animator.SetTrigger(IS_JUMP);
-                break;
-            case Player.State.Fall:
+            case PlayerController.AnimationTriggerType.Fall:
                 animator.SetTrigger(IS_FALL);
                 break;
-            case Player.State.Hit:
+            case PlayerController.AnimationTriggerType.DoubleJump:
+                animator.SetTrigger(IS_DOUBLE_JUMP);
+                break;
+            case PlayerController.AnimationTriggerType.WallSlide:
+                animator.SetTrigger(IS_WALL_SLIDE);
+                break;
+            case PlayerController.AnimationTriggerType.Hit:
+                animator.SetTrigger(IS_HIT);
                 break;
         }
     }
+
 }

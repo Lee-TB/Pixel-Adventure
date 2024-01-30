@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveSpeed = 10f;
     [SerializeField] private float jumpPower = 10f;
     [SerializeField] private float wallSlidingSpeed = 2f;
+    [SerializeField] private int maxHealthPoints = 3;
+    private int healthPoints;
 
-    public enum State
+    public enum AnimationState
     {
         Idle,
         Run,
@@ -19,7 +21,7 @@ public class Player : MonoBehaviour
         WallJump,
         Hit,
     }
-    private State state;
+    private AnimationState state;
 
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider2D;
@@ -37,11 +39,13 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        state = State.Idle;
+        state = AnimationState.Idle;
+        healthPoints = maxHealthPoints;
     }
 
     private void Update()
     {
+        Debug.Log(state);
         HandleMovement();
         HandleJumping();
         HandleWallSliding();
@@ -59,7 +63,7 @@ public class Player : MonoBehaviour
 
     private void HandleMovement()
     {
-        if (state != State.WallJump && state != State.WallSlide)
+        if (state != AnimationState.WallJump && state != AnimationState.WallSlide)
         {
             rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
         }
@@ -74,9 +78,9 @@ public class Player : MonoBehaviour
         if (IsGrounded())
         {
             if (horizontal != 0f)
-                state = State.Run;
+                state = AnimationState.Run;
             else
-                state = State.Idle;
+                state = AnimationState.Idle;
         }
     }
 
@@ -129,18 +133,18 @@ public class Player : MonoBehaviour
 
             if (jumpNumber != jumpNumberMax)
             {
-                state = State.DoubleJump;
+                state = AnimationState.DoubleJump;
             }
         }
 
         // Player State
         if (!IsGrounded())
         {
-            if (rb.velocity.y > 0f && state != State.DoubleJump && state != State.WallJump)
-                state = State.Jump;
+            if (rb.velocity.y > 0f && state != AnimationState.DoubleJump && state != AnimationState.WallJump)
+                state = AnimationState.Jump;
             else if (rb.velocity.y < 0f)
             {
-                state = State.Fall;
+                state = AnimationState.Fall;
             }
         }
     }
@@ -150,13 +154,13 @@ public class Player : MonoBehaviour
         if (IsFacingWall() && horizontal != 0f && !IsGrounded())
         {
             rb.velocity = new Vector2(0f, Mathf.Max(-wallSlidingSpeed, rb.velocity.y));
-            state = State.WallSlide;
+            state = AnimationState.WallSlide;
         }
     }
 
     private void HandleWallJumping()
     {
-        if (state == State.WallSlide)
+        if (state == AnimationState.WallSlide)
         {
             coyoteTimer = coyoteTimerMax;
             jumpNumber = jumpNumberMax;
@@ -177,17 +181,22 @@ public class Player : MonoBehaviour
 
         Vector2 wallJumpDirection = isFacingRight ? Vector2.left : Vector2.right;
 
-        if (state == State.WallSlide && coyoteTimer > 0f && jumpBufferTimer > 0f && jumpNumber > 0)
+        if (state == AnimationState.WallSlide && coyoteTimer > 0f && jumpBufferTimer > 0f && jumpNumber > 0)
         {
             rb.velocity = new Vector2(jumpPower * 0.5f * wallJumpDirection.x, jumpPower);
             Flip();
-            state = State.WallJump;
+            state = AnimationState.WallJump;
         }
     }
 
-    public State GetState()
+    public AnimationState GetState()
     {
         return state;
+    }
+
+    public void SetState(AnimationState state)
+    {
+        this.state = state;
     }
 
     public bool IsGrounded()
@@ -236,5 +245,14 @@ public class Player : MonoBehaviour
     public bool IsJumpOn()
     {
         return Mathf.Abs(rb.velocity.y) > wallSlidingSpeed + 1f;
+    }
+
+    public void Hit(int damage)
+    {
+        healthPoints -= damage;
+        state = AnimationState.Hit;
+        Vector2 direction = isFacingRight ? Vector2.left : Vector2.right;
+        float power = 10f;
+        rb.velocity = new Vector2(direction.x * 10f, power);
     }
 }
