@@ -16,7 +16,7 @@ public class ArrowJump : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out PlayerController player))
         {
             player.Jump(jumpPower);
             animator.SetTrigger(IS_HIT);

@@ -27,7 +27,7 @@ public class Box : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if (collider2D.gameObject.TryGetComponent(out Player player))
+        if (collider2D.gameObject.TryGetComponent(out PlayerController player))
         {
             hp -= 1;
             boxVisualAnimator.SetTrigger("IsHit");
@@ -38,13 +38,13 @@ public class Box : MonoBehaviour
             switch (boxType)
             {
                 case BoxType.Basic:
-                    if (player.GetVelocity().y < 0f) player.Jump(jumpPower);
-                    else if (player.GetVelocity().y > 0f) player.Dive(divePower);
+                    if (player.IsFall()) player.Jump(jumpPower);
+                    else player.Dive(divePower);
                     break;
 
                 case BoxType.Bouncing:
-                    if (player.GetVelocity().y < 0f) player.Jump(jumpPower);
-                    else if (player.GetVelocity().y > 0f) player.Dive(divePower);
+                    if (player.IsFall()) player.Jump(jumpPower);
+                    else player.Dive(divePower);
 
                     OnBoxBouncing?.Invoke(this, EventArgs.Empty);
                     break;

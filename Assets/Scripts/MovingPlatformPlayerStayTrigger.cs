@@ -6,7 +6,7 @@ public class MovingPlatformPlayerStayTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out PlayerController player))
         {
             player.transform.SetParent(transform);
             movingPlatform.IsPlayerStayOn = true;
@@ -15,7 +15,7 @@ public class MovingPlatformPlayerStayTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out PlayerController player))
         {
             player.transform.SetParent(null);
             movingPlatform.IsPlayerStayOn = false;

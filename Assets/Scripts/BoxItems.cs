@@ -90,6 +90,4 @@ public class BoxItems : MonoBehaviour
         float randPower = UnityEngine.Random.Range(-explosionRadius, explosionRadius);
         rb.velocity = new Vector2(randPower, explosionHeight);
     }
-
-
 }

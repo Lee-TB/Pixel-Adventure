@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerGroundCheck : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         playerController.IsGrounded = true;
     }

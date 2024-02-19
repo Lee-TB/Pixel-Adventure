@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
     public bool IsWalled { get; set; } = false;
     public int NumberOfJumps { get; set; }
     public float MoveSpeedModifier { get; set; } = 1f;
+    public float MoveSpeedModifierOrigin { get; set; } = 1f;
     public float SlideSpeedModifier { get; set; } = 1f;
+    public float SlideSpeedModifierOrigin { get; set; } = 1f;
 
     #endregion
 
@@ -106,9 +108,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Jump(float jumpPower)
+    public void Jump(float power)
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+        rb.velocity = new Vector2(rb.velocity.x, power);
+    }
+
+    public void Dive(float power)
+    {
+        rb.velocity = new Vector2(rb.velocity.x, -power);
     }
 
     public void ReadyToJump()

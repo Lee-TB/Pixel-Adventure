@@ -17,9 +17,9 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.CompareTag("Player"))
         {
-            Invoke("TurnOff", timeToFall);
+            Invoke(nameof(TurnOff), timeToFall);
         }
     }
 

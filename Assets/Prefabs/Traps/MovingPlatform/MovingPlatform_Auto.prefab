@@ -131,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838348915329973509, guid: 1d1c6d1a65fcba640b8bc72dc5393a44, type: 3}
       propertyPath: m_Name
-      value: MovingPlatformVisual_GreyVisual
+      value: MovingPlatformVisual_Grey
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

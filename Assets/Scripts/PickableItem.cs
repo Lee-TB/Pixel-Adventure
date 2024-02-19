@@ -12,7 +12,7 @@ public class PickableItem : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.CompareTag("Player"))
         {
             animator.SetTrigger(IS_COLLECTED);
         }

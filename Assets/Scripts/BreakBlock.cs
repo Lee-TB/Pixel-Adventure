@@ -5,6 +5,7 @@ using UnityEngine;
 public class BreakBlock : MonoBehaviour
 {
     [SerializeField] private int maxHP = 2;
+    [SerializeField] private float jumpPower = 5f;
     [SerializeField] private float divePower = 5f;
     [SerializeField] float explosionRadius = 5f;
     [SerializeField] float explosionHeight = 5f;
@@ -25,17 +26,13 @@ public class BreakBlock : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.TryGetComponent(out Player player))
+        if (other.TryGetComponent(out PlayerController player))
         {
-            if (player.IsJumpOn())
-            {
-                hp--;
-                animator.SetTrigger(IS_HIT);
+            hp--;
+            animator.SetTrigger(IS_HIT);
 
-                if (player.GetVelocity().y < 0f) player.JumpByJumpBufferTimer();
-                else player.Dive(divePower);
-            }
-
+            if (player.IsFall()) player.Jump(jumpPower);
+            else player.Dive(divePower);
 
             StartCoroutine(Delay(() =>
             {
