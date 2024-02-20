@@ -6,7 +6,8 @@ public class SpikesTrigger : MonoBehaviour
     {
         if (other.TryGetComponent(out PlayerController player))
         {
-            player.StateMachine.ChangeState(player.HitState);
+            int damageAmount = 1;
+            player.Hit(damageAmount);
         }
     }
 }

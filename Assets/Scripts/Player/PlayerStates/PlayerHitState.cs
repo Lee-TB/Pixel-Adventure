@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PlayerHitState : PlayerState
 {
-    private float hitTime;
-
     public PlayerHitState(PlayerController playerController, PlayerStateMachine playerStateMachine) : base(playerController, playerStateMachine)
     {
     }
@@ -15,7 +13,7 @@ public class PlayerHitState : PlayerState
     {
         playerController.TriggerType = PlayerController.AnimationTriggerType.Hit;
         playerController.KnockBack();
-        hitTime = 1f;
+        playerController.HitTime = playerController.HitTimeMax;
     }
 
     public override void ExitState()
@@ -25,7 +23,7 @@ public class PlayerHitState : PlayerState
 
     public override void FrameUpdate()
     {
-        if (hitTime < 0f)
+        if (playerController.HitTime < 0f)
         {
             playerStateMachine.ChangeState(playerController.IdleState);
         }
@@ -33,6 +31,6 @@ public class PlayerHitState : PlayerState
 
     public override void PhysicsUpdate()
     {
-        hitTime -= Time.fixedDeltaTime;
+        playerController.HitTime -= Time.fixedDeltaTime;
     }
 }

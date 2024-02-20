@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     private float coyoteTimer, coyoteTimerMax = 0.2f;
     private float jumpBufferTimer, jumpBufferTimerMax = 0.2f;
     private bool isFacingRight = true;
+    private float immunityTime, immunityTimeMax = 2f;
     #endregion
 
     #region Public Properties
@@ -27,7 +28,8 @@ public class PlayerController : MonoBehaviour
     public float MoveSpeedModifierOrigin { get; set; } = 1f;
     public float SlideSpeedModifier { get; set; } = 1f;
     public float SlideSpeedModifierOrigin { get; set; } = 1f;
-
+    public float HitTime { get; set; }
+    public float HitTimeMax { get; set; } = 1f;
     #endregion
 
     #region  AnimationType
@@ -57,9 +59,6 @@ public class PlayerController : MonoBehaviour
     public PlayerHitState HitState { get; private set; }
     #endregion
 
-
-
-
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -84,8 +83,9 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         StateMachine.CurrentState.FrameUpdate();
-        coyoteTimer -= Time.fixedDeltaTime;
+        coyoteTimer -= Time.deltaTime;
         jumpBufferTimer -= Time.deltaTime;
+        immunityTime -= Time.deltaTime;
     }
 
     private void FixedUpdate()
@@ -146,7 +146,11 @@ public class PlayerController : MonoBehaviour
 
     public void Hit(int damageAmount)
     {
-
+        if (immunityTime <= 0f)
+        {
+            immunityTime = immunityTimeMax;
+            StateMachine.ChangeState(HitState);
+        }
     }
 
     public void KnockBack()
